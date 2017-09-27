@@ -20,7 +20,8 @@
   "devDependencies": {
     "matcha": "~0.4.0",
     "mocha": "*",
-    "should": "*"
+    "should": "*",
+    "circular-json": "0.3.3"
   },
   "license": "MIT"
 }

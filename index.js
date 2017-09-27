@@ -5,7 +5,7 @@
 
 var fmt = require('util').format;
 var amp = require('amp');
-var poetry = require('../poetry');
+var CircularJSON = require('circular-json');
 
 /**
  * Proxy methods.
@@ -128,9 +128,10 @@ function pack(arg) {
   try{
     buffer = new Buffer('j:' + JSON.stringify(arg));
   }catch(err){
-    poetry.log.debug("You messed up");
-    poetry.log.debug(arg);
-    throw new Error(err.message)
+    console.error("You messed up");
+    throw new Error(CircularJSON.stringify(arg));
+
+    buffer = new Buffer('j:' + JSON.stringify(null));
   }
 
   // json
