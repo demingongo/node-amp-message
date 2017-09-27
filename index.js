@@ -5,6 +5,7 @@
 
 var fmt = require('util').format;
 var amp = require('amp');
+var poetry = require('../poetry');
 
 /**
  * Proxy methods.
@@ -122,8 +123,18 @@ function pack(arg) {
   // undefined
   if (arg === undefined) arg = null;
 
+  var buffer;
+
+  try{
+    buffer = new Buffer('j:' + JSON.stringify(arg));
+  }catch(err){
+    poetry.log.debug("You messed up");
+    poetry.log.debug(arg);
+    throw new Error(err.message)
+  }
+
   // json
-  return new Buffer('j:' + JSON.stringify(arg));
+  return buffer;
 }
 
 /**
