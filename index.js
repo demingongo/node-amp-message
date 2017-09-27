@@ -128,7 +128,10 @@ function pack(arg) {
   try{
     buffer = new Buffer('j:' + JSON.stringify(arg));
   }catch(err){
-    throw new Error("You messed up  =>  "+CircularJSON.stringify(arg));
+    throw new TypeError("You messed up  =>  "+CircularJSON.stringify(arg));
+    
+    
+    process.exit(1);
 
     buffer = new Buffer('j:' + JSON.stringify(null));
   }
